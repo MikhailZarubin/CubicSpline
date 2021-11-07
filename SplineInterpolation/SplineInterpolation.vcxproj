@@ -139,9 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="Spline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="Spline.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
