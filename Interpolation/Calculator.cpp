@@ -92,7 +92,13 @@ bool Calculator::configureExpression(const string& basicExpression)
 
 	for (string::size_type i = 0; i < basicExpression.size(); i++)
 	{
-		if (beginComplexFunction(basicExpression[i]))
+		if (basicExpression[i] == 'e' && basicExpression[i + 1] == '-')
+		{
+			infixExpression += 'F';
+			i++;
+		}
+
+		else if (beginComplexFunction(basicExpression[i]))
 		{
 			infixExpression += basicExpression[i];
 			i += 3;
@@ -266,7 +272,13 @@ long double Calculator::calculateResult()
 		default:
 
 			while (i < postfixExpression.size() && getPriority(postfixExpression[i]) == 0 && postfixExpression[i] != ::delimiter)
-				number += postfixExpression[i++];
+			{
+				if (postfixExpression[i] != 'F')
+					number += postfixExpression[i];
+				else
+					number += "e-";
+				i++;
+			}
 
 			valuesStack.push(std::stold(number));
 			number.clear();

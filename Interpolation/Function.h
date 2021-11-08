@@ -19,4 +19,5 @@ public:
 	~Function() = default;
 	void replaceExpression(const string& newExpression);
 	long double getValue(long double point) const;
+	string getExpression() const;
 };

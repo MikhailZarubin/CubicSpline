@@ -3,6 +3,10 @@
 #include "Function.h"
 #include <vector>
 
+namespace convertFunction {
+	std::string valueToString(double value);
+}
+
 
 class Spline
 {

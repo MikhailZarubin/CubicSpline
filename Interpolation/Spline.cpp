@@ -4,24 +4,7 @@
 #include <sstream>
 #include <string>
 
-namespace
-{
-	std::string valueToString(double value)
-	{
-		std::string answer;
-
-		std::ostringstream oStream;
-		oStream << value;
-
-		std::istringstream iStream(oStream.str());
-		iStream >> answer;
-
-		return answer;
-	}
-}
-
-namespace RunThroughMethodFunctions
-{
+namespace RunThroughMethodFunctions {
 	double calculateCoeffP(const std::vector<double>& alphaContainer,	const std::vector<double>& bettaContainer,
 		const std::vector<double>& gammaContainer, std::vector<double>& answer, std::vector<double>::size_type currentIndex);
 	double calculateCoeffQ(const std::vector<double>& alphaContainer,	const std::vector<double>& bettaContainer,
@@ -29,6 +12,19 @@ namespace RunThroughMethodFunctions
 		std::vector<double>& answer, std::vector<double>::size_type currentIndex);
 }
 
+
+std::string convertFunction::valueToString(double value)
+{
+	std::string answer;
+
+	std::ostringstream oStream;
+	oStream << value;
+
+	std::istringstream iStream(oStream.str());
+	iStream >> answer;
+
+	return answer;
+}
 
 Spline::Spline(const std::string& expressionStr, const std::string& secondDerivativeStr, const std::vector<double>& pointList) :
 	expression(expressionStr),
@@ -163,13 +159,13 @@ std::vector<Function>Spline::startInterpolation()
 
 	for (std::vector<double>::size_type i = 0; i < functionsContainer.size(); i++)
 	{
-		std::string currentPoint = ::valueToString(pointContainer[i + 1]);
-		std::string coeffA = ::valueToString(calculateCoeffA(i + 1));
-		std::string coeffB = ::valueToString(calculateCoeffB(i + 1));
-		std::string coeffC = ::valueToString(calculateCoeffC(i + 1) / 2);
-		std::string coeffD = ::valueToString(calculateCoeffD(i + 1) / 6);
+		std::string currentPoint = convertFunction::valueToString(pointContainer[i + 1]);
+		std::string coeffAStr = convertFunction::valueToString(calculateCoeffA(i + 1));
+		std::string coeffBStr = convertFunction::valueToString(calculateCoeffB(i + 1));
+		std::string coeffCStr = convertFunction::valueToString(calculateCoeffC(i + 1) / 2);
+		std::string coeffDStr = convertFunction::valueToString(calculateCoeffD(i + 1) / 6);
 
-		std::string expression = coeffA + "+" + coeffB + "*(t-" + currentPoint + ")+" + coeffC + "*((t-" + currentPoint + ")^2)+" + coeffD + "*((t-" + currentPoint + ")^3)";
+		std::string expression = coeffAStr + "+(" + coeffBStr + ")*(t-(" + currentPoint + "))+(" + coeffCStr + ")*((t-(" + currentPoint + "))^2)+(" + coeffDStr + ")*((t-(" + currentPoint + "))^3)";
 
 		functionsContainer[i] = Function(expression);
 	}

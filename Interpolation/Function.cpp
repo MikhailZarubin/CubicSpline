@@ -22,3 +22,8 @@ long double Function::getValue(long double point) const
 
 	return Calculator(expressionWithValue).calculateResult();
 }
+
+string Function::getExpression() const
+{
+	return functionExpression;
+}
