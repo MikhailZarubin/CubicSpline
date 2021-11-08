@@ -91,9 +91,9 @@ namespace CppWinForm1 {
 			   this->label5 = (gcnew System::Windows::Forms::Label());
 			   this->label6 = (gcnew System::Windows::Forms::Label());
 			   this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			   this->button2 = (gcnew System::Windows::Forms::Button());
 			   this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			   this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			   this->button2 = (gcnew System::Windows::Forms::Button());
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			   this->SuspendLayout();
 			   // 
@@ -103,9 +103,9 @@ namespace CppWinForm1 {
 			   this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
 			   this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			   this->button1->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->button1->Location = System::Drawing::Point(400, 435);
+			   this->button1->Location = System::Drawing::Point(350, 435);
 			   this->button1->Name = L"button1";
-			   this->button1->Size = System::Drawing::Size(100, 30);
+			   this->button1->Size = System::Drawing::Size(200, 30);
 			   this->button1->TabIndex = 0;
 			   this->button1->Text = L"StartInterpolation";
 			   this->button1->TextImageRelation = System::Windows::Forms::TextImageRelation::TextBeforeImage;
@@ -119,7 +119,7 @@ namespace CppWinForm1 {
 			   this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label1->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->label1->Location = System::Drawing::Point(330, 300);
+			   this->label1->Location = System::Drawing::Point(265, 300);
 			   this->label1->Name = L"label1";
 			   this->label1->Size = System::Drawing::Size(92, 19);
 			   this->label1->TabIndex = 1;
@@ -132,7 +132,7 @@ namespace CppWinForm1 {
 			   this->label2->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label2->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->label2->Location = System::Drawing::Point(330, 368);
+			   this->label2->Location = System::Drawing::Point(265, 368);
 			   this->label2->Name = L"label2";
 			   this->label2->Size = System::Drawing::Size(50, 19);
 			   this->label2->TabIndex = 2;
@@ -145,7 +145,7 @@ namespace CppWinForm1 {
 			   this->label3->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label3->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->label3->Location = System::Drawing::Point(330, 334);
+			   this->label3->Location = System::Drawing::Point(265, 334);
 			   this->label3->Name = L"label3";
 			   this->label3->Size = System::Drawing::Size(100, 19);
 			   this->label3->TabIndex = 3;
@@ -155,19 +155,19 @@ namespace CppWinForm1 {
 			   // 
 			   this->textBox1->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
-			   this->textBox1->Location = System::Drawing::Point(450, 296);
+			   this->textBox1->Location = System::Drawing::Point(385, 296);
 			   this->textBox1->Name = L"textBox1";
-			   this->textBox1->Size = System::Drawing::Size(120, 27);
+			   this->textBox1->Size = System::Drawing::Size(250, 27);
 			   this->textBox1->TabIndex = 4;
-			   this->textBox1->Text = L"sin(t)-cos(t)*sin(t)";
+			   this->textBox1->Text = L"sin(t)-cos(t)*sin(t) ";
 			   // 
 			   // textBox2
 			   // 
 			   this->textBox2->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
-			   this->textBox2->Location = System::Drawing::Point(450, 330);
+			   this->textBox2->Location = System::Drawing::Point(385, 330);
 			   this->textBox2->Name = L"textBox2";
-			   this->textBox2->Size = System::Drawing::Size(120, 27);
+			   this->textBox2->Size = System::Drawing::Size(250, 27);
 			   this->textBox2->TabIndex = 6;
 			   this->textBox2->Text = L"cos(t)+sin(t)*sin(t)-cos(t)*cos(t)";
 			   // 
@@ -175,9 +175,9 @@ namespace CppWinForm1 {
 			   // 
 			   this->textBox3->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
-			   this->textBox3->Location = System::Drawing::Point(450, 364);
+			   this->textBox3->Location = System::Drawing::Point(385, 364);
 			   this->textBox3->Name = L"textBox3";
-			   this->textBox3->Size = System::Drawing::Size(120, 27);
+			   this->textBox3->Size = System::Drawing::Size(250, 27);
 			   this->textBox3->TabIndex = 5;
 			   this->textBox3->Text = L"-6 -4 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 4 6";
 			   // 
@@ -187,7 +187,7 @@ namespace CppWinForm1 {
 			   this->label4->Font = (gcnew System::Drawing::Font(L"Calibri", 9.75F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label4->ForeColor = System::Drawing::SystemColors::ControlDark;
-			   this->label4->Location = System::Drawing::Point(576, 376);
+			   this->label4->Location = System::Drawing::Point(640, 376);
 			   this->label4->Name = L"label4";
 			   this->label4->Size = System::Drawing::Size(119, 15);
 			   this->label4->TabIndex = 7;
@@ -226,6 +226,20 @@ namespace CppWinForm1 {
 			   this->dataGridView1->TabIndex = 10;
 			   this->dataGridView1->Visible = false;
 			   // 
+			   // Column1
+			   // 
+			   this->Column1->HeaderText = L"Interval";
+			   this->Column1->Name = L"Column1";
+			   this->Column1->ReadOnly = true;
+			   this->Column1->Width = 84;
+			   // 
+			   // Column2
+			   // 
+			   this->Column2->HeaderText = L"Function";
+			   this->Column2->Name = L"Column2";
+			   this->Column2->ReadOnly = true;
+			   this->Column2->Width = 250;
+			   // 
 			   // button2
 			   // 
 			   this->button2->BackColor = System::Drawing::SystemColors::ActiveCaption;
@@ -241,20 +255,6 @@ namespace CppWinForm1 {
 			   this->button2->UseVisualStyleBackColor = false;
 			   this->button2->Visible = false;
 			   this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
-			   // 
-			   // Column1
-			   // 
-			   this->Column1->HeaderText = L"Interval";
-			   this->Column1->Name = L"Column1";
-			   this->Column1->ReadOnly = true;
-			   this->Column1->Width = 84;
-			   // 
-			   // Column2
-			   // 
-			   this->Column2->HeaderText = L"Function";
-			   this->Column2->Name = L"Column2";
-			   this->Column2->ReadOnly = true;
-			   this->Column2->Width = 250;
 			   // 
 			   // MyForm
 			   // 
@@ -313,7 +313,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Spline spline(functionExpression, secondDerivativeExpression, pointContainer);
 	std::vector<Function> resultInterpolation = spline.startInterpolation();
 
-	for (int dataGridSize = 1; dataGridSize < resultInterpolation.size(); dataGridSize++)
+	for (std::vector<Function>::size_type dataGridSize = 1; dataGridSize < resultInterpolation.size(); dataGridSize++)
 		dataGridView1->Rows->Add();
 
 	//draw a coordinate system
@@ -406,9 +406,6 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	{
 		if (x > pointContainer[currentIndex + 1])
 			currentIndex++;
-
-		if (currentIndex == 3)
-			float a;
 
 		float startX = static_cast<float>(450. + (x - 0.01) * stepFunction);
 		float startY = static_cast<float>(350. - lastValue * stepFunction);
