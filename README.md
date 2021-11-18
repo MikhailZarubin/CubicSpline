@@ -1,2 +1,2 @@
 # CubicSpline
-Laboratory work on the construction of a cubic spline
+Laboratory work on the construction of a Cubic Spline
