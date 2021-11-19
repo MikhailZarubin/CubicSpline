@@ -13,7 +13,7 @@ namespace RunThroughMethodFunctions {
 }
 
 
-std::string convertFunction::valueToString(double value)
+std::string convertFunction::valueToString(double value, std::string::size_type accuracy)
 {
 	std::string answer;
 
@@ -23,28 +23,63 @@ std::string convertFunction::valueToString(double value)
 	std::istringstream iStream(oStream.str());
 	iStream >> answer;
 
+	if (accuracy > 0)
+	{
+		string temporaryAnswer;
+		std::string::size_type index;
+
+		for (index = 0; index < answer.size(); index++)
+		{
+			if (answer[index] == '.' || answer[index] == ',')
+				break;
+
+			temporaryAnswer += answer[index];
+		}
+
+		while (index < answer.size() && accuracy != 0)
+		{
+			temporaryAnswer += answer[index];
+			index++;
+			accuracy--;
+		}
+
+		answer = temporaryAnswer;
+	}
+
 	return answer;
 }
 
-Spline::Spline(const std::string& expressionStr, const std::string& secondDerivativeStr, const std::vector<double>& pointList) :
-	expression(expressionStr),
+Spline::Spline(const std::vector<double>& valueList, const std::vector<double>& pointList) :
+	valueContainer(valueList),
 	pointContainer(pointList),
 	coeffContainer(pointContainer.size())
 {
-	std::sort(pointContainer.begin(), pointContainer.end());
-	double leftBorder = *pointContainer.begin();
-	double rightBorder = *(--pointContainer.end());
+	if (pointContainer.size() != valueContainer.size())
+		throw - 1;
 
-	Function secondDerivative(secondDerivativeStr);
-	double firstCoef = secondDerivative.getValue(leftBorder);
-	double lastCoef = secondDerivative.getValue(rightBorder);
-	coeffContainer[0] = firstCoef;
-	coeffContainer[coeffContainer.size() - 1] = lastCoef;
+	coeffContainer[0] = 0;
+	coeffContainer[coeffContainer.size() - 1] = 0;
+
+	//sorting
+	for (std::vector<double>::size_type i = 0; i < pointContainer.size(); i++)
+	{
+		for (std::vector<double>::size_type j = i + 1; j < pointContainer.size(); j++)
+		{
+			if (pointContainer[j] < pointContainer[i])
+			{
+				std::swap(pointContainer[i], pointContainer[j]);
+				std::swap(valueContainer[i], valueContainer[j]);
+			}
+
+			if (pointContainer[j] == pointContainer[i])
+				throw - 1;
+		}
+	}
 }
 
 double Spline::calculateCoeffA(int numberInterval) const
 {
-	return expression.getValue(pointContainer[numberInterval]);
+	return valueContainer[numberInterval];
 }
 
 double Spline::calculateCoeffB(int numberInterval) const
@@ -54,8 +89,8 @@ double Spline::calculateCoeffB(int numberInterval) const
 
 	double currentIntervalLenght = currentPoint - lastPoint;
 
-	double lastIntervalValue = expression.getValue(lastPoint);
-	double intervalValue = expression.getValue(currentPoint);
+	double lastIntervalValue = valueContainer[numberInterval - 1];
+	double intervalValue = valueContainer[numberInterval];
 
 	return (intervalValue - lastIntervalValue) / currentIntervalLenght +
 		coeffContainer[numberInterval] * currentIntervalLenght / 3 +
@@ -74,9 +109,9 @@ void Spline::fillCoeffContainer()
 
 	for (std::vector<double>::size_type i = 0; i < sizeContainers; i++)
 	{
-		double lastIntervalValue = expression.getValue(pointContainer[i]);
-		double currentIntervalValue = expression.getValue(pointContainer[i + 1]);
-		double nextIntervalValue = expression.getValue(pointContainer[i + 2]);
+		double lastIntervalValue = valueContainer[i];
+		double currentIntervalValue = valueContainer[i + 1];
+		double nextIntervalValue = valueContainer[i + 2];
 
 		double currentIntervalLenght = pointContainer[i + 1] - pointContainer[i];
 		double nextIntervalLenght = pointContainer[i + 2] - pointContainer[i + 1];
@@ -152,22 +187,27 @@ double Spline::calculateCoeffD(int numberInterval) const
 	return (currentCoeff - lastCoeff) / currentIntervalLenght;
 }
 
-std::vector<Function>Spline::startInterpolation()
+std::vector<std::pair<Function, SplineCoeffs>>Spline::startInterpolation()
 {
-	std::vector<Function> functionsContainer(pointContainer.size() - 1, Function());
+	std::vector<std::pair<Function, SplineCoeffs>> functionsContainer(pointContainer.size() - 1, { Function(), SplineCoeffs() });
 	fillCoeffContainer();
 
 	for (std::vector<double>::size_type i = 0; i < functionsContainer.size(); i++)
 	{
+		double coeffA = calculateCoeffA(i + 1);
+		double coeffB = calculateCoeffB(i + 1);
+		double coeffC = calculateCoeffC(i + 1);
+		double coeffD = calculateCoeffD(i + 1);
+
 		std::string currentPoint = convertFunction::valueToString(pointContainer[i + 1]);
-		std::string coeffAStr = convertFunction::valueToString(calculateCoeffA(i + 1));
-		std::string coeffBStr = convertFunction::valueToString(calculateCoeffB(i + 1));
-		std::string coeffCStr = convertFunction::valueToString(calculateCoeffC(i + 1) / 2);
-		std::string coeffDStr = convertFunction::valueToString(calculateCoeffD(i + 1) / 6);
+		std::string coeffAStr = convertFunction::valueToString(coeffA);
+		std::string coeffBStr = convertFunction::valueToString(coeffB);
+		std::string coeffCStr = convertFunction::valueToString(coeffC / 2);
+		std::string coeffDStr = convertFunction::valueToString(coeffD / 6);
 
 		std::string expression = coeffAStr + "+(" + coeffBStr + ")*(t-(" + currentPoint + "))+(" + coeffCStr + ")*((t-(" + currentPoint + "))^2)+(" + coeffDStr + ")*((t-(" + currentPoint + "))^3)";
 
-		functionsContainer[i] = Function(expression);
+		functionsContainer[i] = { Function(expression), SplineCoeffs(coeffA, coeffB, coeffC, coeffD) };
 	}
 
 	return functionsContainer;
