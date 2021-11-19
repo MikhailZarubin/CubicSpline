@@ -145,7 +145,7 @@ namespace CppWinForm1 {
 			   this->label2->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label2->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->label2->Location = System::Drawing::Point(353, 451);
+			   this->label2->Location = System::Drawing::Point(397, 451);
 			   this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label2->Name = L"label2";
 			   this->label2->Size = System::Drawing::Size(61, 24);
@@ -159,7 +159,7 @@ namespace CppWinForm1 {
 			   this->label3->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(204)));
 			   this->label3->ForeColor = System::Drawing::SystemColors::WindowText;
-			   this->label3->Location = System::Drawing::Point(351, 387);
+			   this->label3->Location = System::Drawing::Point(395, 387);
 			   this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label3->Name = L"label3";
 			   this->label3->Size = System::Drawing::Size(63, 24);
@@ -212,7 +212,7 @@ namespace CppWinForm1 {
 			   this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			   this->dataGridView1->Name = L"dataGridView1";
 			   this->dataGridView1->RowHeadersWidth = 51;
-			   this->dataGridView1->Size = System::Drawing::Size(455, 186);
+			   this->dataGridView1->Size = System::Drawing::Size(470, 186);
 			   this->dataGridView1->TabIndex = 10;
 			   this->dataGridView1->Visible = false;
 			   // 
@@ -311,7 +311,7 @@ namespace CppWinForm1 {
 			   this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->BackColor = System::Drawing::SystemColors::Window;
-			   this->ClientSize = System::Drawing::Size(1179, 814);
+			   this->ClientSize = System::Drawing::Size(1182, 823);
 			   this->Controls->Add(this->label5);
 			   this->Controls->Add(this->label7);
 			   this->Controls->Add(this->button2);
@@ -438,8 +438,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			float coordinateX = 450. + pointContainer[i] * stepFunction;
 			float coordinateY = 350. - valueContainer[i] * stepFunction;
 
-			gr->DrawEllipse(penCurrentPoint, static_cast<float>(coordinateX - 1.),
-				static_cast<float>(coordinateY - 1.),
+			gr->DrawEllipse(penCurrentPoint, static_cast<float>(coordinateX - 2.),
+				static_cast<float>(coordinateY - 2.),
 				4., 4.);
 		}
 
