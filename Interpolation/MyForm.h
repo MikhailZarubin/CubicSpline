@@ -404,22 +404,20 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		gr->DrawLine(penLine, 750, 350, 745, 345);
 		gr->DrawLine(penLine, 750, 350, 745, 355);
 
-		int step = 30;
-
-		for (int i = 150; i < 750; i += step)
+		//sorting and find max
+		int valueMinAbs = static_cast<int>(fabs(valueContainer[0]));
+		int valueMaxAbs = valueMinAbs;
+		for (const auto& value : valueContainer)
 		{
-			gr->DrawLine(penLine, i, 345, i, 355);
+			if (static_cast<int>(fabs(value)) < valueMinAbs)
+				valueMinAbs = value;
+
+			else if (static_cast<int>(fabs(value)) > valueMaxAbs)
+				valueMaxAbs = value;
 		}
 
-		for (int i = 600; i > 100; i -= step)
-		{
-			if (i != 0)
-				gr->DrawLine(penLine, 448, i, 452, i);
-		}
-
-		//sorting 
 		for (std::vector<double>::size_type i = 0; i < pointContainer.size(); i++)
-		{
+		{			
 			for (std::vector<double>::size_type j = i + 1; j < pointContainer.size(); j++)
 			{
 				if (pointContainer[j] < pointContainer[i])
@@ -428,6 +426,34 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 					std::swap(valueContainer[i], valueContainer[j]);
 				}
 			}
+		}
+
+		int pointMinAbs = static_cast<int>(fabs(pointContainer[0]));
+		int pointMaxAbs = static_cast<int>(fabs(pointContainer[pointContainer.size() - 1]));
+
+		int unit_segment = max(max(valueMinAbs, valueMaxAbs), max(pointMinAbs, pointMaxAbs));
+		unit_segment = unit_segment / 10 + 1;
+
+		int step = 30 / unit_segment;
+
+		for (int i = 450; i < 750; i += step)
+		{
+			gr->DrawLine(penLine, i, 345, i, 355);
+		}
+
+		for (int i = 450; i > 150; i -= step)
+		{
+			gr->DrawLine(penLine, i, 345, i, 355);
+		}
+
+		for (int i = 350; i < 600; i += step)
+		{
+			gr->DrawLine(penLine, 448, i, 452, i);
+		}
+
+		for (int i = 350; i > 100; i -= step)
+		{
+			gr->DrawLine(penLine, 448, i, 452, i);
 		}
 
 		//draw a point
