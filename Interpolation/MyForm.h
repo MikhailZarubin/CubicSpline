@@ -487,6 +487,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			lastValue = resultInterpolation[currentIndex].first.getValue(x);
 		}
 
+		//print coeffs 
 		for (int i = 0; i < resultInterpolation.size(); i++)
 		{
 			std::string interval = convertFunction::valueToString(pointContainer[i]) + " ... " + convertFunction::valueToString(pointContainer[i + 1]);
